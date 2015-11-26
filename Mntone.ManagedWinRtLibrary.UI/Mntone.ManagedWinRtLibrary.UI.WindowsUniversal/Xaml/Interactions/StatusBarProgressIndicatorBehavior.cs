@@ -109,8 +109,11 @@ namespace Mntone.ManagedWinRtLibrary.UI.Xaml.Interactions
 
 		private void OnLoaded(object sender, RoutedEventArgs e)
 		{
-			this._isEnabled = true;
-			this.Apply();
+			if (!this._isEnabled)
+			{
+				this._isEnabled = true;
+				this.Apply();
+			}
 		}
 
 		private void OnUnloaded(object sender, RoutedEventArgs e)
@@ -125,7 +128,7 @@ namespace Mntone.ManagedWinRtLibrary.UI.Xaml.Interactions
 		[System.Diagnostics.CodeAnalysis.SuppressMessage("Safety", "UWP001:Platform-specific", Justification = "Safety")]
 		private async void Apply()
 		{
-			if (this._isVisible) return;
+			if (this._isVisible || !this.IsEnabled) return;
 			this._isVisible = true;
 
 			var progressIndicator = ProgressIndicator;
