@@ -1,0 +1,492 @@
+﻿<Page
+	x:Class="Mntone.WinRtLibrary.DemoApp.Views.MainPage"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:local="using:Mntone.WinRtLibrary.DemoApp"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	mc:Ignorable="d"
+	xmlns:i="using:Microsoft.Xaml.Interactivity"
+	xmlns:e="using:Microsoft.Xaml.Interactions.Core"
+	xmlns:me="using:Mntone.ManagedWinRtLibrary.UI.Xaml.Interactions"
+	xmlns:conv="using:Mntone.WinRtLibrary.UI.Xaml.Converters"
+	xmlns:v="using:Mntone.WinRtLibrary.DemoApp.Views"
+	xmlns:vm="using:Mntone.WinRtLibrary.DemoApp.ViewModels"
+	Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+	DataContext="{Binding MainPageViewModel, RelativeSource={RelativeSource Self}, Mode=OneTime}">
+	<Page.Resources>
+		<conv:BooleanToVisibilityConverter
+			x:Key="BooleanToVisibilityConverter" />
+	</Page.Resources>
+
+	<i:Interaction.Behaviors>
+		<me:KeyTriggerBehavior
+			Key="{x:Bind MainPageViewModel.KeyTrigger.Key, Mode=OneWay}"
+			ShiftKeyState="{x:Bind MainPageViewModel.KeyTrigger.ShiftKeyState, Mode=OneWay}"
+			ControlKeyState="{x:Bind MainPageViewModel.KeyTrigger.ControlKeyState, Mode=OneWay}"
+			MenuKeyState="{x:Bind MainPageViewModel.KeyTrigger.MenuKeyState, Mode=OneWay}"
+			WindowsKeyState="{x:Bind MainPageViewModel.KeyTrigger.WindowsKeyState, Mode=OneWay}">
+			<e:InvokeCommandAction
+				Command="{x:Bind MainPageViewModel.KeyTrigger.LogCommand}" />
+		</me:KeyTriggerBehavior>
+		<me:StatusBarColorBehavior
+			ForegroundColor="{x:Bind MainPageViewModel.StatusBarColor.ForegroundColor.Value, Mode=OneWay}"
+			BackgroundColor="{x:Bind MainPageViewModel.StatusBarColor.BackgroundColor.Value, Mode=OneWay}"
+			BackgroundOpacity="{x:Bind MainPageViewModel.StatusBarColor.BackgroundOpacity, Mode=OneWay}" />
+		<me:StatusBarProgressIndicatorBehavior
+			IsEnabled="{x:Bind MainPageViewModel.StatusBarProgressIndicator.IsEnabled, Mode=OneWay}"
+			IsIndeterminate="{x:Bind MainPageViewModel.StatusBarProgressIndicator.IsIndeterminate, Mode=OneWay}"
+			Text="{x:Bind MainPageViewModel.StatusBarProgressIndicator.Text, Mode=OneWay}"
+			Value="{x:Bind MainPageViewModel.StatusBarProgressIndicator.Value, Mode=OneWay}"
+			MinValue="{x:Bind MainPageViewModel.StatusBarProgressIndicator.MinValue, Mode=OneWay}"
+			MaxValue="{x:Bind MainPageViewModel.StatusBarProgressIndicator.MaxValue, Mode=OneWay}" />
+		<me:TitleBarColorBehavior
+			ForegroundColor="{x:Bind MainPageViewModel.TitleBarColor.ForegroundColor.Value, Mode=OneWay}"
+			BackgroundColor="{x:Bind MainPageViewModel.TitleBarColor.BackgroundColor.Value, Mode=OneWay}"
+			InactiveForegroundColor="{x:Bind MainPageViewModel.TitleBarColor.InactiveForegroundColor.Value, Mode=OneWay}"
+			InactiveBackgroundColor="{x:Bind MainPageViewModel.TitleBarColor.InactiveBackgroundColor.Value, Mode=OneWay}"
+			ButtonForegroundColor="{x:Bind MainPageViewModel.TitleBarColor.ButtonForegroundColor.Value, Mode=OneWay}"
+			ButtonBackgroundColor="{x:Bind MainPageViewModel.TitleBarColor.ButtonBackgroundColor.Value, Mode=OneWay}"
+			ButtonHoverForegroundColor="{x:Bind MainPageViewModel.TitleBarColor.ButtonHoverForegroundColor.Value, Mode=OneWay}"
+			ButtonHoverBackgroundColor="{x:Bind MainPageViewModel.TitleBarColor.ButtonHoverBackgroundColor.Value, Mode=OneWay}"
+			ButtonPressedForegroundColor="{x:Bind MainPageViewModel.TitleBarColor.ButtonPressedForegroundColor.Value, Mode=OneWay}"
+			ButtonPressedBackgroundColor="{x:Bind MainPageViewModel.TitleBarColor.ButtonPressedBackgroundColor.Value, Mode=OneWay}"
+			ButtonInactiveForegroundColor="{x:Bind MainPageViewModel.TitleBarColor.ButtonInactiveForegroundColor.Value, Mode=OneWay}"
+			ButtonInactiveBackgroundColor="{x:Bind MainPageViewModel.TitleBarColor.ButtonInactiveBackgroundColor.Value, Mode=OneWay}" />
+		<me:WindowTitleBehavior
+			Title="{x:Bind MainPageViewModel.WindowTitle.Title, Mode=OneWay}" />
+	</i:Interaction.Behaviors>
+
+	<Pivot>
+		<Pivot.TitleTemplate>
+			<DataTemplate>
+				<TextBlock
+					Text="Mntone WinRT Library"
+					Style="{StaticResource TitleTextBlockStyle}" />
+			</DataTemplate>
+		</Pivot.TitleTemplate>
+		<PivotItem
+			Header="Settings">
+			<ScrollViewer
+				Padding="12,0,12,0">
+				<StackPanel>
+					<StackPanel
+						Margin="0,0,0,20">
+						<TextBlock
+							Text="KeyTriggerBehavior"
+							Style="{StaticResource SubtitleTextBlockStyle}" />
+
+						<Grid>
+							<Grid.RowDefinitions>
+								<RowDefinition />
+								<RowDefinition />
+								<RowDefinition />
+								<RowDefinition />
+								<RowDefinition />
+							</Grid.RowDefinitions>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition
+									Width="120" />
+								<ColumnDefinition />
+							</Grid.ColumnDefinitions>
+
+							<TextBlock
+								Margin="0,4,0,4"
+								Text="Key:" />
+							<ComboBox
+								Grid.Column="1"
+								Margin="0,0,0,8"
+								HorizontalAlignment="Stretch"
+								ItemsSource="{x:Bind MainPageViewModel.KeyTrigger.VirtualKeys}"
+								SelectedItem="{Binding KeyTrigger.KeyVM, Mode=TwoWay}">
+								<ComboBox.ItemTemplate>
+									<DataTemplate
+										x:DataType="vm:VirtualKeyViewModel">
+										<TextBlock
+											Text="{x:Bind Label}" />
+									</DataTemplate>
+								</ComboBox.ItemTemplate>
+							</ComboBox>
+
+							<TextBlock
+								Grid.Row="1"
+								Margin="0,4,0,4"
+								Text="Shift state:" />
+							<ComboBox
+								Grid.Row="1"
+								Grid.Column="1"
+								Margin="0,0,0,8"
+								Width="140"
+								ItemsSource="{x:Bind MainPageViewModel.KeyTrigger.PressedStates}"
+								SelectedItem="{Binding KeyTrigger.ShiftKeyStateVM, Mode=TwoWay}">
+								<ComboBox.ItemTemplate>
+									<DataTemplate
+										x:DataType="vm:KeyPressedStateViewModel">
+										<TextBlock
+											Text="{x:Bind Label}" />
+									</DataTemplate>
+								</ComboBox.ItemTemplate>
+							</ComboBox>
+
+							<TextBlock
+								Grid.Row="2"
+								Margin="0,4,0,4"
+								Text="Control state:" />
+							<ComboBox
+								Grid.Row="2"
+								Grid.Column="1"
+								Margin="0,0,0,8"
+								Width="140"
+								ItemsSource="{x:Bind MainPageViewModel.KeyTrigger.PressedStates}"
+								SelectedItem="{Binding KeyTrigger.ControlKeyStateVM, Mode=TwoWay}">
+								<ComboBox.ItemTemplate>
+									<DataTemplate
+										x:DataType="vm:KeyPressedStateViewModel">
+										<TextBlock
+											Text="{x:Bind Label}" />
+									</DataTemplate>
+								</ComboBox.ItemTemplate>
+							</ComboBox>
+
+							<TextBlock
+								Grid.Row="3"
+								Margin="0,4,0,4"
+								Text="Menu state:" />
+							<ComboBox
+								Grid.Row="3"
+								Grid.Column="1"
+								Margin="0,0,0,8"
+								Width="140"
+								ItemsSource="{x:Bind MainPageViewModel.KeyTrigger.PressedStates}"
+								SelectedItem="{Binding KeyTrigger.MenuKeyStateVM, Mode=TwoWay}">
+								<ComboBox.ItemTemplate>
+									<DataTemplate
+										x:DataType="vm:KeyPressedStateViewModel">
+										<TextBlock
+											Text="{x:Bind Label}" />
+									</DataTemplate>
+								</ComboBox.ItemTemplate>
+							</ComboBox>
+
+							<TextBlock
+								Grid.Row="4"
+								Margin="0,4,0,4"
+								Text="Windows state:" />
+							<ComboBox
+								Grid.Row="4"
+								Grid.Column="1"
+								Margin="0,0,0,8"
+								Width="140"
+								ItemsSource="{x:Bind MainPageViewModel.KeyTrigger.PressedStates}"
+								SelectedItem="{Binding KeyTrigger.WindowsKeyStateVM, Mode=TwoWay}">
+								<ComboBox.ItemTemplate>
+									<DataTemplate
+										x:DataType="vm:KeyPressedStateViewModel">
+										<TextBlock
+											Text="{x:Bind Label}" />
+									</DataTemplate>
+								</ComboBox.ItemTemplate>
+							</ComboBox>
+						</Grid>
+					</StackPanel>
+					<Grid>
+						<StackPanel
+							Margin="0,0,0,20">
+							<TextBlock
+								Text="StatusBarColorBehavior"
+								Style="{StaticResource SubtitleTextBlockStyle}" />
+
+							<TextBlock
+								Text="Foreground color:" />
+							<v:ColorView
+								Margin="0,0,0,8"
+								DataContext="{x:Bind MainPageViewModel.StatusBarColor.ForegroundColor}"
+								IsEnabled="{x:Bind MainPageViewModel.StatusBarColor.IsApiEnabled}" />
+
+							<TextBlock
+								Margin="0,4,0,4"
+								Text="Background color:" />
+							<v:ColorView
+								Margin="0,0,0,8"
+								DataContext="{x:Bind MainPageViewModel.StatusBarColor.BackgroundColor}"
+								IsEnabled="{x:Bind MainPageViewModel.StatusBarColor.IsApiEnabled}" />
+
+							<TextBlock
+								Margin="0,4,0,4"
+								Text="Background opacity:" />
+							<TextBox
+								Margin="0,0,0,8"
+								Text="{Binding StatusBarColor.BackgroundOpacity, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+								InputScope="Digits"
+								IsEnabled="{x:Bind MainPageViewModel.StatusBarColor.IsApiEnabled}" />
+						</StackPanel>
+						<Rectangle
+							Fill="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+							Opacity=".5"
+							Visibility="{Binding StatusBarColor.IsApiDisabled, Converter={StaticResource BooleanToVisibilityConverter}}" />
+					</Grid>
+					<Grid>
+						<StackPanel
+							Margin="0,0,0,20">
+							<TextBlock
+								Text="StatusBarProgressIndicatorBehavior"
+								Style="{StaticResource SubtitleTextBlockStyle}" />
+							<ToggleSwitch
+								Margin="0,4,0,4"
+								IsOn="{x:Bind MainPageViewModel.StatusBarProgressIndicator.IsEnabled, Mode=TwoWay}"
+								OnContent="Enabled"
+								OffContent="Disabled"
+								IsEnabled="{x:Bind MainPageViewModel.StatusBarProgressIndicator.IsApiEnabled}" />
+							<CheckBox
+								Margin="0,4,0,4"
+								IsChecked="{x:Bind MainPageViewModel.StatusBarProgressIndicator.IsIndeterminateNullable, Mode=TwoWay}"
+								Content="Indeterminate"
+								IsEnabled="{x:Bind MainPageViewModel.StatusBarProgressIndicator.IsApiEnabled}" />
+							<Grid>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition
+										Width="120" />
+									<ColumnDefinition />
+								</Grid.ColumnDefinitions>
+
+								<TextBlock
+									Margin="0,4,0,4"
+									Text="Text:" />
+								<TextBox
+									Grid.Column="1"
+									Margin="0,0,0,8"
+									Text="{Binding StatusBarProgressIndicator.Text, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+									IsEnabled="{x:Bind MainPageViewModel.StatusBarProgressIndicator.IsApiEnabled}" />
+							</Grid>
+							<Grid>
+								<Grid.RowDefinitions>
+									<RowDefinition />
+									<RowDefinition />
+									<RowDefinition />
+								</Grid.RowDefinitions>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition
+										Width="120" />
+									<ColumnDefinition />
+								</Grid.ColumnDefinitions>
+
+								<TextBlock
+									Margin="0,4,0,4"
+									Text="Value:" />
+								<TextBox
+									Grid.Column="1"
+									Margin="0,0,0,8"
+									Text="{Binding StatusBarProgressIndicator.Value, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+									InputScope="Digits"
+									IsEnabled="{x:Bind MainPageViewModel.StatusBarProgressIndicator.IsApiEnabled}" />
+
+								<TextBlock
+									Grid.Row="1"
+									Margin="0,4,0,4"
+									Text="MinValue:" />
+								<TextBox
+									Grid.Row="1"
+									Grid.Column="1"
+									Margin="0,0,0,8"
+									Text="{Binding StatusBarProgressIndicator.MinValue, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+									InputScope="Digits"
+									IsEnabled="{x:Bind MainPageViewModel.StatusBarProgressIndicator.IsApiEnabled}" />
+
+								<TextBlock
+									Grid.Row="2"
+									Margin="0,4,0,4"
+									Text="MaxValue:" />
+								<TextBox
+									Grid.Row="2"
+									Grid.Column="1"
+									Margin="0,0,0,8"
+									Text="{Binding StatusBarProgressIndicator.MaxValue, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+									InputScope="Digits"
+									IsEnabled="{x:Bind MainPageViewModel.StatusBarProgressIndicator.IsApiEnabled}" />
+							</Grid>
+						</StackPanel>
+						<Rectangle
+							Fill="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+							Opacity=".5"
+							Visibility="{Binding StatusBarProgressIndicator.IsApiDisabled, Converter={StaticResource BooleanToVisibilityConverter}}" />
+					</Grid>
+					<StackPanel
+						Margin="0,0,0,20">
+						<TextBlock
+							Text="WindowTitleBehavior"
+							Style="{StaticResource SubtitleTextBlockStyle}" />
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition
+									Width="120" />
+								<ColumnDefinition />
+							</Grid.ColumnDefinitions>
+
+							<TextBlock
+								Margin="0,4,0,4"
+								Text="Window title:" />
+							<TextBox
+								Grid.Column="1"
+								Margin="0,0,0,8"
+								Text="{Binding WindowTitle.Title, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+						</Grid>
+					</StackPanel>
+					<StackPanel
+						Margin="0,0,0,20">
+						<TextBlock
+							Text="HidablePivotItemBehavior"
+							Style="{StaticResource SubtitleTextBlockStyle}" />
+						<CheckBox
+							Margin="0,4,0,4"
+							IsChecked="{x:Bind MainPageViewModel.HidablePivotItem.IsVisibleNullable, Mode=TwoWay}"
+							Content="Visible pivot item" />
+					</StackPanel>
+					<StackPanel
+						Margin="0,0,0,20">
+						<TextBlock
+							Text="DisplaySizeHelper"
+							Style="{StaticResource SubtitleTextBlockStyle}" />
+						<StackPanel
+							Margin="0,4,0,4"
+							Orientation="Horizontal">
+							<TextBlock
+								Text="{x:Bind MainPageViewModel.DisplaySize.DisplaySize}" />
+							<TextBlock
+								Text=" inch" />
+						</StackPanel>
+					</StackPanel>
+				</StackPanel>
+			</ScrollViewer>
+		</PivotItem>
+		<PivotItem
+			Header="TitleBarColor">
+			<ScrollViewer
+				Padding="12,0,12,0">
+				<StackPanel
+					Margin="0,0,0,20">
+					<TextBlock
+						Text="TitleBarColorBehavior"
+						Style="{StaticResource SubtitleTextBlockStyle}" />
+
+					<TextBlock
+						Margin="0,4,0,4"
+						Text="Foreground color:" />
+					<v:ColorView
+						Margin="0,0,0,8"
+						DataContext="{x:Bind MainPageViewModel.TitleBarColor.ForegroundColor}" />
+
+					<TextBlock
+						Margin="0,4,0,4"
+						Text="Background color:" />
+					<v:ColorView
+						Margin="0,0,0,8"
+						DataContext="{x:Bind MainPageViewModel.TitleBarColor.BackgroundColor}" />
+
+					<TextBlock
+						Margin="0,4,0,4"
+						Text="Inactive foreground color:" />
+					<v:ColorView
+						Margin="0,0,0,8"
+						DataContext="{x:Bind MainPageViewModel.TitleBarColor.InactiveForegroundColor}" />
+
+					<TextBlock
+						Margin="0,4,0,4"
+						Text="Inactive background color:" />
+					<v:ColorView
+						Margin="0,0,0,8"
+						DataContext="{x:Bind MainPageViewModel.TitleBarColor.InactiveBackgroundColor}" />
+
+					<TextBlock
+						Margin="0,4,0,4"
+						Text="Button foreground color:" />
+					<v:ColorView
+						Margin="0,0,0,8"
+						DataContext="{x:Bind MainPageViewModel.TitleBarColor.ButtonForegroundColor}" />
+
+					<TextBlock
+						Margin="0,4,0,4"
+						Text="Button background color:" />
+					<v:ColorView
+						Margin="0,0,0,8"
+						DataContext="{x:Bind MainPageViewModel.TitleBarColor.ButtonBackgroundColor}" />
+
+					<TextBlock
+						Margin="0,4,0,4"
+						Text="Button hover foreground color:" />
+					<v:ColorView
+						Margin="0,0,0,8"
+						DataContext="{x:Bind MainPageViewModel.TitleBarColor.ButtonHoverForegroundColor}" />
+
+					<TextBlock
+						Margin="0,4,0,4"
+						Text="Button hover background color:" />
+					<v:ColorView
+						Margin="0,0,0,8"
+						DataContext="{x:Bind MainPageViewModel.TitleBarColor.ButtonHoverBackgroundColor}" />
+
+					<TextBlock
+						Margin="0,4,0,4"
+						Text="Button pressed foreground color:" />
+					<v:ColorView
+						Margin="0,0,0,8"
+						DataContext="{x:Bind MainPageViewModel.TitleBarColor.ButtonPressedForegroundColor}" />
+
+					<TextBlock
+						Margin="0,4,0,4"
+						Text="Button pressed background color:" />
+					<v:ColorView
+						Margin="0,0,0,8"
+						DataContext="{x:Bind MainPageViewModel.TitleBarColor.ButtonPressedBackgroundColor}" />
+
+					<TextBlock
+						Margin="0,4,0,4"
+						Text="Button inactive foreground color:" />
+					<v:ColorView
+						Margin="0,0,0,8"
+						DataContext="{x:Bind MainPageViewModel.TitleBarColor.ButtonInactiveForegroundColor}" />
+
+					<TextBlock
+						Margin="0,4,0,4"
+						Text="Button inactive background color:" />
+					<v:ColorView
+						Margin="0,0,0,8"
+						DataContext="{x:Bind MainPageViewModel.TitleBarColor.ButtonInactiveBackgroundColor}" />
+				</StackPanel>
+			</ScrollViewer>
+		</PivotItem>
+		<PivotItem
+			Header="Log">
+			<ListBox
+				ItemsSource="{x:Bind MainPageViewModel.Log.Log}" />
+		</PivotItem>
+		<PivotItem
+			Header="Hidable">
+			<i:Interaction.Behaviors>
+				<me:HidablePivotItemBehavior
+					IsVisible="{x:Bind MainPageViewModel.HidablePivotItem.IsVisible, Mode=OneWay}" />
+			</i:Interaction.Behaviors>
+
+			<StackPanel
+				Padding="12,0,12,0">
+				<TextBlock
+					Text="Hidable pivot item" />
+				<Button
+					Content="Hide"
+					Command="{x:Bind MainPageViewModel.HidablePivotItem.HideCommand}" />
+			</StackPanel>
+		</PivotItem>
+		<PivotItem Header="Info">
+			<StackPanel Margin="12,0,12,0">
+				<TextBlock
+					Text="This project is open source!" />
+				<TextBlock
+					Text="If you use it," />
+				<TextBlock>
+					<Run>Go to</Run>
+					<Hyperlink
+						NavigateUri="https://github.com/mntone/WinRtLibrary">https://github.com/mntone/WinRtLibrary</Hyperlink>
+				</TextBlock>
+			</StackPanel>
+		</PivotItem>
+	</Pivot>
+</Page>
