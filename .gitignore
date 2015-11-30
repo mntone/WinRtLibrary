@@ -16,8 +16,11 @@ DTAR_*/
 *.nupkg
 *.appx
 *.lock.json
+*.csproj.user
+*_StoreKey.pfx
 
 ipch/
 *.sdf
 *.opensdf
 *.vcxproj.filters
+*.vcxproj.user
