@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+	<metadata>
+		<id>Mntone.ManagedWinRtLibrary.UI</id>
+		<title>Mntone WinRT Library (Managed.UI)</title>
+		<version>0.8.0.1</version>
+		<authors>mntone</authors>
+		<owners>mntone</owners>
+		<description>This is my useful Windows Runtime library</description>
+		<projectUrl>https://github.com/mntone/WinRtLibrary</projectUrl>
+		<licenseUrl>https://github.com/mntone/WinRtLibrary/blob/master/LICENSE.txt</licenseUrl>
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<copyright>Copyright (C) 2015- mntone</copyright>
+		<language>en-US</language>
+		<tags>UWP WinRT WindowsRuntime Behavior StatusBar TitleBar</tags>
+		<dependencies>
+			<dependency id="Mntone.ManagedWinRtLibrary" version="[0.8.0.1,]" />
+		</dependencies>
+	</metadata>
+	<files>
+		<file src="..\bin\Release\Mntone.ManagedWinRtLibrary.UI.Windows\Mntone.ManagedWinRtLibrary.UI.dll" target="lib\win81" />
+		
+		<file src="..\bin\Release\Mntone.ManagedWinRtLibrary.UI.WindowsPhone\Mntone.ManagedWinRtLibrary.UI.dll" target="lib\wpa81" />
+
+		<file src="..\bin\Release\Mntone.ManagedWinRtLibrary.UI.WindowsUniversal\Mntone.ManagedWinRtLibrary.UI.dll" target="lib\uap10.0" />
+		<file src="Mntone.ManagedWinRtLibrary.UI.WindowsUniversal\Properties\Mntone.ManagedWinRtLibrary.UI.rd.xml" target="lib\uap10.0\Mntone.ManagedWinRtLibrary.UI.WindowsUniversal\Properties" />
+
+		<file src="nuget-build\Mntone.ManagedWinRtLibrary.UI.targets" target="build" />
+	</files>
+</package>

@@ -1,0 +1,11 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<Target Name="CheckJS" Condition=" '$(MSBuildProjectExtension)' == '.jsproj' " BeforeTargets="BeforeBuild">
+		<Error Text="Mntone WinRT Library (Managed.UI) does not support the JavaScript target project." />
+	</Target>
+
+	<ItemGroup>
+		<SDKReference Include="BehaviorsXamlSDKManaged, Version=12.0">
+			<Name>Behaviors SDK %28XAML%29</Name>
+		</SDKReference>
+	</ItemGroup>
+</Project>

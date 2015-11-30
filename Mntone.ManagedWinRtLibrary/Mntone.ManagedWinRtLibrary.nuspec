@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+	<metadata>
+		<id>Mntone.ManagedWinRtLibrary</id>
+		<title>Mntone WinRT Library (Managed)</title>
+		<version>0.8.0.1</version>
+		<authors>mntone</authors>
+		<owners>mntone</owners>
+		<description>This is my useful Windows Runtime library</description>
+		<projectUrl>https://github.com/mntone/WinRtLibrary</projectUrl>
+		<licenseUrl>https://github.com/mntone/WinRtLibrary/blob/master/LICENSE.txt</licenseUrl>
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<copyright>Copyright (C) 2015- mntone</copyright>
+		<language>en-US</language>
+		<tags>UWP WinRT WindowsRuntime Behavior StatusBar TitleBar</tags>
+	</metadata>
+	<files>
+		<file src="..\bin\Release\Mntone.ManagedWinRtLibrary\Mntone.ManagedWinRtLibrary.dll" target="lib\portable-win81+wpa81+uap10.0" />
+	</files>
+</package>

@@ -22,7 +22,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\bin\Debug\Mntone.WinRtManagedLibrary.UI.WindowsUniversal\</OutputPath>
+    <OutputPath>..\..\bin\Debug\Mntone.ManagedWinRtLibrary.UI.WindowsUniversal\</OutputPath>
     <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -31,7 +31,7 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\bin\Release\Mntone.WinRtManagedLibrary.UI.WindowsUniversal\</OutputPath>
+    <OutputPath>..\..\bin\Release\Mntone.ManagedWinRtLibrary.UI.WindowsUniversal\</OutputPath>
     <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>

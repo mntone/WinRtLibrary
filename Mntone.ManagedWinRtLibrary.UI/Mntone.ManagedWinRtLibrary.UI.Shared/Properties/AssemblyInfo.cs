@@ -11,8 +11,8 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
-[assembly: AssemblyVersion("0.8.0.0")]
-[assembly: AssemblyFileVersion("0.8.0.0")]
+[assembly: AssemblyVersion("0.8.0.1")]
+[assembly: AssemblyFileVersion("0.8.0.1")]
 [assembly: ComVisible(false)]
 
 namespace Mntone.ManagedWinRtLibrary.UI.Internal
@@ -22,7 +22,7 @@ namespace Mntone.ManagedWinRtLibrary.UI.Internal
 		public const string Name = "Mntone.ManagedWinRtLibrary.UI";
 		public const string QualifiedName = "Mntone WinRT Library (Managed.UI)";
 		public const string Description = ManagedWinRtLibrary.Internal.AssemblyInfo.Description;
-		public const string Version = "0.8.0.0";
+		public const string Version = "0.8.0.1";
 		public const string Author = ManagedWinRtLibrary.Internal.AssemblyInfo.Author;
 	}
 }

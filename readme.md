@@ -2,8 +2,15 @@
 
 [![License](https://img.shields.io/github/license/mntone/WinRtLibrary.svg?style=flat-square)](https://github.com/mntone/WinRtLibrary/blob/master/LICENSE.txt)
 
+WinRtLibrary:  [![NuGet](https://img.shields.io/nuget/v/Mntone.WinRtLibrary.svg?style=flat-square)](https://www.nuget.org/packages/Mntone.WinRtLibrary/) [![Downloads](https://img.shields.io/nuget/dt/Mntone.WinRtLibrary.svg?style=flat-square)](https://www.nuget.org/packages/Mntone.WinRtLibrary/)
+
+WinRtLibrary (Managed):  [![NuGet](https://img.shields.io/nuget/v/Mntone.ManagedWinRtLibrary.svg?style=flat-square)](https://www.nuget.org/packages/Mntone.ManagedWinRtLibrary/) [![Downloads](https://img.shields.io/nuget/dt/Mntone.ManagedWinRtLibrary.svg?style=flat-square)](https://www.nuget.org/packages/Mntone.ManagedWinRtLibrary/)
+
+WinRtLibrary (Managed.UI):  [![NuGet](https://img.shields.io/nuget/v/Mntone.ManagedWinRtLibrary.UI.svg?style=flat-square)](https://www.nuget.org/packages/Mntone.ManagedWinRtLibrary.UI/) [![Downloads](https://img.shields.io/nuget/dt/Mntone.ManagedWinRtLibrary.UI.svg?style=flat-square)](https://www.nuget.org/packages/Mntone.ManagedWinRtLibrary.UI/)
+
 This is my useful library for UWP and Windows Store app.
 
+<img src="https://github.com/mntone/WinRtLibrary/blob/master/images/Windows10MobileSS.png" alt="Windows 10 Mobile" width="360" height="640"> <img src="https://github.com/mntone/WinRtLibrary/blob/master/images/Windows10DesktopSS.png" alt="Windows 10 Desktop" width="386" height="640">
 
 ## Requirement
 

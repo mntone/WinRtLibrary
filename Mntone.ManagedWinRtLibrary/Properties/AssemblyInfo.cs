@@ -12,8 +12,8 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
-[assembly: AssemblyVersion("0.8.0.0")]
-[assembly: AssemblyFileVersion("0.8.0.0")]
+[assembly: AssemblyVersion("0.8.0.1")]
+[assembly: AssemblyFileVersion("0.8.0.1")]
 [assembly: ComVisible(false)]
 
 [assembly: InternalsVisibleTo("Mntone.ManagedWinRtLibrary.UI")]
@@ -25,7 +25,7 @@ namespace Mntone.ManagedWinRtLibrary.Internal
 		public const string Name = "Mntone.ManagedWinRtLibrary";
 		public const string QualifiedName = "Mntone WinRT Library (Managed)";
 		public const string Description = "This is my useful Windows Runtime library";
-		public const string Version = "0.8.0.0";
+		public const string Version = "0.8.0.1";
 		public const string Author = "mntone";
 	}
 }

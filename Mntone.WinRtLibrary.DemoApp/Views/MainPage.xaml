@@ -475,16 +475,54 @@
 					Command="{x:Bind MainPageViewModel.HidablePivotItem.HideCommand}" />
 			</StackPanel>
 		</PivotItem>
-		<PivotItem Header="Info">
-			<StackPanel Margin="12,0,12,0">
+		<PivotItem
+			Header="Info">
+			<StackPanel
+				Margin="12,0,12,0">
 				<TextBlock
+					FontSize="16"
+					FontWeight="Bold"
 					Text="This project is open source!" />
+				
 				<TextBlock
-					Text="If you use it," />
-				<TextBlock>
-					<Run>Go to</Run>
+					Margin="0,12,0,0"
+					TextWrapping="Wrap">
+					<Run>Support languages: C++/CX (Not managed only), VB, C#</Run>
+					<LineBreak />
+					<Run>Support platforms: Windows 8.1, Windows Phone 8.1, UWP [check in Desktop, Mobile only]</Run>
+				</TextBlock>
+
+				<TextBlock
+					Margin="0,12,0,0"
+					TextWrapping="WrapWholeWords">
+					<Run>If you use it, go to</Run>
 					<Hyperlink
 						NavigateUri="https://github.com/mntone/WinRtLibrary">https://github.com/mntone/WinRtLibrary</Hyperlink>
+				</TextBlock>
+
+				<TextBlock
+					Margin="0,12,0,0"
+					Text="[NuGet packages]" />
+				<TextBlock
+					Margin="0,4,0,0"
+					TextWrapping="WrapWholeWords">
+					<Run>WinRtLibrary: </Run>
+					<Hyperlink
+						NavigateUri="https://www.nuget.org/packages/Mntone.WinRtLibrary">https://www.nuget.org/packages/Mntone.WinRtLibrary</Hyperlink>
+				</TextBlock>
+				<TextBlock
+					Margin="0,4,0,0"
+					TextWrapping="WrapWholeWords">
+					<Run>WinRtLibrary (Managed): </Run>
+					<Hyperlink
+						NavigateUri="https://www.nuget.org/packages/Mntone.ManagedWinRtLibrary">https://www.nuget.org/packages/Mntone.ManagedWinRtLibrary</Hyperlink>
+				</TextBlock>
+				<TextBlock
+					Margin="0,4,0,0"
+					TextWrapping="WrapWholeWords">
+					<Run>WinRtLibrary (Managed.UI): </Run>
+					<Hyperlink
+						NavigateUri="https://www.nuget.org/packages/Mntone.ManagedWinRtLibrary.UI">https://www.nuget.org/packages/Mntone.ManagedWinRtLibrary.UI</Hyperlink>
 				</TextBlock>
 			</StackPanel>
 		</PivotItem>

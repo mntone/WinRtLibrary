@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+	<metadata>
+		<id>Mntone.WinRtLibrary</id>
+		<title>Mntone WinRT Library</title>
+		<version>0.8.0.1</version>
+		<authors>mntone</authors>
+		<owners>mntone</owners>
+		<description>This is my useful Windows Runtime library.</description>
+		<projectUrl>https://github.com/mntone/WinRtLibrary</projectUrl>
+		<licenseUrl>https://github.com/mntone/WinRtLibrary/blob/master/LICENSE.txt</licenseUrl>
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<copyright>Copyright (C) 2015- mntone</copyright>
+		<language>en-US</language>
+		<tags>UWP WinRT WindowsRuntime Behavior StatusBar TitleBar</tags>
+	</metadata>
+	<files>
+		<file src="..\bin\x86-Release\Mntone.WinRtLibrary.Windows\Mntone.WinRtLibrary.winmd" target="lib\win81" />
+		<file src="..\bin\x86-Release\Mntone.WinRtLibrary.Windows\Mntone.WinRtLibrary.dll" target="runtimes\win81-x86\native" />
+		<file src="..\bin\x64-Release\Mntone.WinRtLibrary.Windows\Mntone.WinRtLibrary.dll" target="runtimes\win81-x64\native" />
+		<file src="..\bin\ARM-Release\Mntone.WinRtLibrary.Windows\Mntone.WinRtLibrary.dll" target="runtimes\win81-ARM\native" />
+
+		<file src="..\bin\x86-Release\Mntone.WinRtLibrary.WindowsPhone\Mntone.WinRtLibrary.winmd" target="lib\wpa81" />
+		<file src="..\bin\x86-Release\Mntone.WinRtLibrary.WindowsPhone\Mntone.WinRtLibrary.dll" target="runtimes\wpa81-x86\native" />
+		<file src="..\bin\ARM-Release\Mntone.WinRtLibrary.WindowsPhone\Mntone.WinRtLibrary.dll" target="runtimes\wpa81-ARM\native" />
+
+		<file src="..\bin\x86-Release\Mntone.WinRtLibrary.WindowsUniversal\Mntone.WinRtLibrary.winmd" target="lib\uap10.0" />
+		<file src="..\bin\x86-Release\Mntone.WinRtLibrary.WindowsUniversal\Mntone.WinRtLibrary.dll" target="runtimes\win10-x86\native" />
+		<file src="..\bin\x64-Release\Mntone.WinRtLibrary.WindowsUniversal\Mntone.WinRtLibrary.dll" target="runtimes\win10-x64\native" />
+		<file src="..\bin\ARM-Release\Mntone.WinRtLibrary.WindowsUniversal\Mntone.WinRtLibrary.dll" target="runtimes\win10-ARM\native" />
+
+		<file src="nuget-build\native\Mntone.WinRtLibrary.targets" target="build\native" />
+		<file src="nuget-build\win81\Mntone.WinRtLibrary.targets" target="build\win81" />
+		<file src="nuget-build\wpa81\Mntone.WinRtLibrary.targets" target="build\wpa81" />
+		<file src="nuget-build\uap10.0\Mntone.WinRtLibrary.targets" target="build\upa10.0" />
+	</files>
+</package>
