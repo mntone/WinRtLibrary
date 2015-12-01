@@ -1,9 +1,12 @@
 ﻿using Microsoft.Xaml.Interactivity;
-using Mntone.ManagedWinRtLibrary.UI.Xaml.Interactivity;
 using Windows.UI;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+
+#if !WINDOWS_UWP
+using Mntone.ManagedWinRtLibrary.UI.Xaml.Interactivity;
+#endif
 
 namespace Mntone.ManagedWinRtLibrary.UI.Xaml.Interactions
 {
@@ -119,24 +122,35 @@ namespace Mntone.ManagedWinRtLibrary.UI.Xaml.Interactions
 			= DependencyProperty.Register(nameof(ButtonInactiveBackgroundColor), typeof(object), typeof(TitleBarColorBehavior), PropertyMetadata.Create((object)null, OnButtonInactiveBackgroundColorChanged));
 
 
+#if !WINDOWS_UWP
 		private bool _isEnabled = false;
+#endif
 
 		protected override void OnAttached()
 		{
+#if WINDOWS_UWP
+			this.Apply();
+#else
 			this._isEnabled = true;
 			this.Apply();
-			this.TypedAssociatedObject.Loaded += this.OnLoaded;
-			this.TypedAssociatedObject.Unloaded += this.OnUnloaded;
+			this.AssociatedObject.Loaded += this.OnLoaded;
+			this.AssociatedObject.Unloaded += this.OnUnloaded;
+#endif
 		}
 
 		protected override void OnDetaching()
 		{
-			this.TypedAssociatedObject.Loaded -= this.OnLoaded;
-			this.TypedAssociatedObject.Unloaded -= this.OnUnloaded;
+#if WINDOWS_UWP
+			this.Unapply();
+#else
+			this.AssociatedObject.Loaded -= this.OnLoaded;
+			this.AssociatedObject.Unloaded -= this.OnUnloaded;
 			this.Unapply();
 			this._isEnabled = false;
+#endif
 		}
-		
+
+#if !WINDOWS_UWP
 		private void OnLoaded(object sender, RoutedEventArgs e)
 		{
 			if (!this._isEnabled)
@@ -154,6 +168,7 @@ namespace Mntone.ManagedWinRtLibrary.UI.Xaml.Interactions
 				this._isEnabled = false;
 			}
 		}
+#endif
 
 		private void Apply()
 		{
@@ -192,73 +207,109 @@ namespace Mntone.ManagedWinRtLibrary.UI.Xaml.Interactions
 		private static void OnForegroundColorChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		{
 			var that = (TitleBarColorBehavior)d;
-			if (that._isEnabled) TitleBar.ForegroundColor = (Color?)e.NewValue;
+#if !WINDOWS_UWP
+			if (that._isEnabled)
+#endif
+				TitleBar.ForegroundColor = (Color?)e.NewValue;
 		}
 
 		private static void OnBackgroundColorChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		{
 			var that = (TitleBarColorBehavior)d;
-			if (that._isEnabled) TitleBar.BackgroundColor = (Color?)e.NewValue;
+#if !WINDOWS_UWP
+			if (that._isEnabled)
+#endif
+				TitleBar.BackgroundColor = (Color?)e.NewValue;
 		}
 
 		private static void OnInactiveForegroundColorChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		{
 			var that = (TitleBarColorBehavior)d;
-			if (that._isEnabled) TitleBar.InactiveForegroundColor = (Color?)e.NewValue;
+#if !WINDOWS_UWP
+			if (that._isEnabled)
+#endif
+				TitleBar.InactiveForegroundColor = (Color?)e.NewValue;
 		}
 
 		private static void OnInactiveBackgroundColorChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		{
 			var that = (TitleBarColorBehavior)d;
-			if (that._isEnabled) TitleBar.InactiveBackgroundColor = (Color?)e.NewValue;
+#if !WINDOWS_UWP
+			if (that._isEnabled)
+#endif
+				TitleBar.InactiveBackgroundColor = (Color?)e.NewValue;
 		}
 
 		private static void OnButtonForegroundColorChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		{
 			var that = (TitleBarColorBehavior)d;
-			if (that._isEnabled) TitleBar.ButtonForegroundColor = (Color?)e.NewValue;
+#if !WINDOWS_UWP
+			if (that._isEnabled)
+#endif
+				TitleBar.ButtonForegroundColor = (Color?)e.NewValue;
 		}
 
 		private static void OnButtonBackgroundColorChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		{
 			var that = (TitleBarColorBehavior)d;
-			if (that._isEnabled) TitleBar.ButtonBackgroundColor = (Color?)e.NewValue;
+#if !WINDOWS_UWP
+			if (that._isEnabled)
+#endif
+				TitleBar.ButtonBackgroundColor = (Color?)e.NewValue;
 		}
 
 		private static void OnButtonHoverForegroundColorChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		{
 			var that = (TitleBarColorBehavior)d;
-			if (that._isEnabled) TitleBar.ButtonHoverForegroundColor = (Color?)e.NewValue;
+#if !WINDOWS_UWP
+			if (that._isEnabled)
+#endif
+				TitleBar.ButtonHoverForegroundColor = (Color?)e.NewValue;
 		}
 
 		private static void OnButtonHoverBackgroundColorChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		{
 			var that = (TitleBarColorBehavior)d;
-			if (that._isEnabled) TitleBar.ButtonHoverBackgroundColor = (Color?)e.NewValue;
+#if !WINDOWS_UWP
+			if (that._isEnabled)
+#endif
+				TitleBar.ButtonHoverBackgroundColor = (Color?)e.NewValue;
 		}
 
 		private static void OnButtonPressedForegroundColorChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		{
 			var that = (TitleBarColorBehavior)d;
-			if (that._isEnabled) TitleBar.ButtonPressedForegroundColor = (Color?)e.NewValue;
+#if !WINDOWS_UWP
+			if (that._isEnabled)
+#endif
+				TitleBar.ButtonPressedForegroundColor = (Color?)e.NewValue;
 		}
 
 		private static void OnButtonPressedBackgroundColorChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		{
 			var that = (TitleBarColorBehavior)d;
-			if (that._isEnabled) TitleBar.ButtonPressedBackgroundColor = (Color?)e.NewValue;
+#if !WINDOWS_UWP
+			if (that._isEnabled)
+#endif
+				TitleBar.ButtonPressedBackgroundColor = (Color?)e.NewValue;
 		}
 
 		private static void OnButtonInactiveForegroundColorChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		{
 			var that = (TitleBarColorBehavior)d;
-			if (that._isEnabled) TitleBar.ButtonInactiveForegroundColor = (Color?)e.NewValue;
+#if !WINDOWS_UWP
+			if (that._isEnabled)
+#endif
+				TitleBar.ButtonInactiveForegroundColor = (Color?)e.NewValue;
 		}
 
 		private static void OnButtonInactiveBackgroundColorChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		{
 			var that = (TitleBarColorBehavior)d;
-			if (that._isEnabled) TitleBar.ButtonInactiveBackgroundColor = (Color?)e.NewValue;
+#if !WINDOWS_UWP
+			if (that._isEnabled)
+#endif
+				TitleBar.ButtonInactiveBackgroundColor = (Color?)e.NewValue;
 		}
 
 		private static ApplicationViewTitleBar TitleBar => ApplicationView.GetForCurrentView().TitleBar;

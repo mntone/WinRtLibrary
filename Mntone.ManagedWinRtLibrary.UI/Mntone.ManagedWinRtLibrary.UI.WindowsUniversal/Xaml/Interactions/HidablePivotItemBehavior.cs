@@ -28,8 +28,10 @@ namespace Mntone.ManagedWinRtLibrary.UI.Xaml.Interactions
 
 		protected override void OnDetaching()
 		{
+#if !WINDOWS_UWP
 			this._index = -1;
 			this._parent = null;
+#endif
 		}
 
 		private static void OnIsVisiblePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -39,14 +41,14 @@ namespace Mntone.ManagedWinRtLibrary.UI.Xaml.Interactions
 
 			if (that._parent == null)
 			{
-				var parentPivot = (Pivot)that.TypedAssociatedObject.Parent;
+				var parentPivot = (Pivot)that.AssociatedObject.Parent;
 				if (parentPivot == null) return;
 
 				that._parent = parentPivot;
 			}
 
 			var items = that._parent.Items;
-			var target = that.TypedAssociatedObject;
+			var target = that.AssociatedObject;
 			if (flag)
 			{
 				if (!items.Contains(target))

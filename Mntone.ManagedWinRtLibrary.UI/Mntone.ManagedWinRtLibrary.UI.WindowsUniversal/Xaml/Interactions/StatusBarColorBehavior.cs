@@ -1,9 +1,12 @@
 ﻿using Microsoft.Xaml.Interactivity;
-using Mntone.ManagedWinRtLibrary.UI.Xaml.Interactivity;
 using Windows.UI;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+
+#if !WINDOWS_UWP
+using Mntone.ManagedWinRtLibrary.UI.Xaml.Interactivity;
+#endif
 
 namespace Mntone.ManagedWinRtLibrary.UI.Xaml.Interactions
 {
@@ -47,34 +50,35 @@ namespace Mntone.ManagedWinRtLibrary.UI.Xaml.Interactions
 			= DependencyProperty.Register(nameof(BackgroundOpacity), typeof(double), typeof(StatusBarColorBehavior), PropertyMetadata.Create(1.0, OnBackgroundOpacityChanged));
 
 
+#if !WINDOWS_UWP
 		private bool _isEnabled = false;
+#endif
 
 		protected override void OnAttached()
 		{
 #if WINDOWS_UWP
-			if (IsApiEnabled)
+			if (IsApiEnabled) this.Apply();
+#else
+			this._isEnabled = true;
+			this.Apply();
+			this.AssociatedObject.Loaded += this.OnLoaded;
+			this.AssociatedObject.Unloaded += this.OnUnloaded;
 #endif
-			{
-				this._isEnabled = true;
-				this.Apply();
-				this.TypedAssociatedObject.Loaded += this.OnLoaded;
-				this.TypedAssociatedObject.Unloaded += this.OnUnloaded;
-			}
 		}
 
 		protected override void OnDetaching()
 		{
 #if WINDOWS_UWP
-			if (IsApiEnabled)
+			if (IsApiEnabled) this.Unapply();
+#else
+			this.AssociatedObject.Loaded -= this.OnLoaded;
+			this.AssociatedObject.Unloaded -= this.OnUnloaded;
+			this.Unapply();
+			this._isEnabled = false;
 #endif
-			{
-				this.TypedAssociatedObject.Loaded -= this.OnLoaded;
-				this.TypedAssociatedObject.Unloaded -= this.OnUnloaded;
-				this.Unapply();
-				this._isEnabled = false;
-			}
 		}
-		
+
+#if !WINDOWS_UWP
 		private void OnLoaded(object sender, RoutedEventArgs e)
 		{
 			if (!this._isEnabled)
@@ -92,6 +96,7 @@ namespace Mntone.ManagedWinRtLibrary.UI.Xaml.Interactions
 				this._isEnabled = false;
 			}
 		}
+#endif
 
 		private void Apply()
 		{
@@ -113,7 +118,7 @@ namespace Mntone.ManagedWinRtLibrary.UI.Xaml.Interactions
 		{
 			var that = (StatusBarColorBehavior)d;
 #if WINDOWS_UWP
-			if (IsApiEnabled && that._isEnabled)
+			if (IsApiEnabled)
 #else
 			if (that._isEnabled)
 #endif
@@ -126,7 +131,7 @@ namespace Mntone.ManagedWinRtLibrary.UI.Xaml.Interactions
 		{
 			var that = (StatusBarColorBehavior)d;
 #if WINDOWS_UWP
-			if (IsApiEnabled && that._isEnabled)
+			if (IsApiEnabled)
 #else
 			if (that._isEnabled)
 #endif
@@ -139,7 +144,7 @@ namespace Mntone.ManagedWinRtLibrary.UI.Xaml.Interactions
 		{
 			var that = (StatusBarColorBehavior)d;
 #if WINDOWS_UWP
-			if (IsApiEnabled && that._isEnabled)
+			if (IsApiEnabled)
 #else
 			if (that._isEnabled)
 #endif

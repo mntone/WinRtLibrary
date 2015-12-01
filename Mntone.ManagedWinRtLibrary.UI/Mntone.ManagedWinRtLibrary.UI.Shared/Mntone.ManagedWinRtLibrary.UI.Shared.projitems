@@ -14,7 +14,5 @@
     <Compile Include="$(MSBuildThisFileDirectory)Xaml\Interactions\KeyTriggerBehavior.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Xaml\Interactivity\Action.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Xaml\Interactivity\ActionableBehavior.generic.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Xaml\Interactivity\Behavior.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Xaml\Interactivity\Behavior.generic.cs" />
   </ItemGroup>
 </Project>

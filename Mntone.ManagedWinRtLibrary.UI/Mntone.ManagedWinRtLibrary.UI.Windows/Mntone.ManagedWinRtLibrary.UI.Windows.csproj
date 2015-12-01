@@ -44,6 +44,8 @@
     <Compile Include="..\Mntone.ManagedWinRtLibrary.UI.WindowsUniversal\Xaml\Interactions\WindowTitleBehavior.cs">
       <Link>Xaml\Interactions\WindowTitleBehavior.cs</Link>
     </Compile>
+    <Compile Include="Xaml\Interactivity\Behavior.cs" />
+    <Compile Include="Xaml\Interactivity\Behavior.generic.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />

@@ -50,6 +50,12 @@
     <Compile Include="..\Mntone.ManagedWinRtLibrary.UI.WindowsUniversal\Xaml\Interactions\StatusBarProgressIndicatorBehavior.cs">
       <Link>Xaml\Interactions\StatusBarProgressIndicatorBehavior.cs</Link>
     </Compile>
+    <Compile Include="..\Mntone.ManagedWinRtLibrary.UI.Windows\Xaml\Interactivity\Behavior.cs">
+      <Link>Xaml\Interactivity\Behavior.cs</Link>
+    </Compile>
+    <Compile Include="..\Mntone.ManagedWinRtLibrary.UI.Windows\Xaml\Interactivity\Behavior.generic.cs">
+      <Link>Xaml\Interactivity\Behavior.generic.cs</Link>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />

@@ -17,10 +17,14 @@ DTAR_*/
 *.appx
 *.lock.json
 *.csproj.user
+
+Package.StoreAssociation.xml
 *_StoreKey.pfx
+_pkginfo.txt
 
 ipch/
 *.sdf
 *.opensdf
 *.vcxproj.filters
 *.vcxproj.user
+*.opendb
