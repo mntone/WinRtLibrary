@@ -25,7 +25,7 @@ namespace Mntone.ManagedWinRtLibrary.Internal
 		public const string Name = "Mntone.ManagedWinRtLibrary";
 		public const string QualifiedName = "Mntone WinRT Library (Managed)";
 		public const string Description = "This is my useful Windows Runtime library";
-		public const string Version = "0.8.1.0";
+		public const string Version = "0.8.1.2";
 		public const string Author = "mntone";
 	}
 }

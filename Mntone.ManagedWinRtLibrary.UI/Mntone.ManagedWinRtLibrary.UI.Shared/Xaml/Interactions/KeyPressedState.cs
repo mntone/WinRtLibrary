@@ -1,6 +1,6 @@
 ﻿namespace Mntone.ManagedWinRtLibrary.UI.Xaml.Interactions
 {
-	public enum KeyPressedState : byte
+	public enum KeyPressedState
 	{
 		None = 0,
 		Pressed,
