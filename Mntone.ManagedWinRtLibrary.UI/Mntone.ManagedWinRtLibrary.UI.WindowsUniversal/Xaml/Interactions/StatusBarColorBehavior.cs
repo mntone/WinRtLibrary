@@ -13,6 +13,9 @@ namespace Mntone.ManagedWinRtLibrary.UI.Xaml.Interactions
 	[TypeConstraint(typeof(Page))]
 	public sealed class StatusBarColorBehavior : Behavior<Page>
 	{
+		[System.ThreadStatic]
+		private static StatusBarColorBehavior _owner = null;
+
 #if WINDOWS_UWP
 		public static bool IsApiEnabled { get; }
 
@@ -104,10 +107,13 @@ namespace Mntone.ManagedWinRtLibrary.UI.Xaml.Interactions
 			statusBar.ForegroundColor = this.ForegroundColor;
 			statusBar.BackgroundColor = this.BackgroundColor;
 			statusBar.BackgroundOpacity = this.BackgroundOpacity;
+			_owner = this;
 		}
 
 		private void Unapply()
 		{
+			if (_owner != this) return;
+
 			var statusBar = StatusBar;
 			statusBar.ForegroundColor = null;
 			statusBar.BackgroundColor = null;

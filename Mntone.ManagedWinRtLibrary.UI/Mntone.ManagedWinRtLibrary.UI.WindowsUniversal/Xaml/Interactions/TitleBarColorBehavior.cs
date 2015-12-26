@@ -13,6 +13,9 @@ namespace Mntone.ManagedWinRtLibrary.UI.Xaml.Interactions
 	[TypeConstraint(typeof(Page))]
 	public sealed class TitleBarColorBehavior : Behavior<Page>
 	{
+		[System.ThreadStatic]
+		private static TitleBarColorBehavior _owner = null;
+
 		[CustomPropertyValueEditor(CustomPropertyValueEditor.PropertyBinding)]
 		public Color? ForegroundColor
 		{
@@ -185,10 +188,13 @@ namespace Mntone.ManagedWinRtLibrary.UI.Xaml.Interactions
 			titleBar.ButtonPressedBackgroundColor = this.ButtonPressedBackgroundColor;
 			titleBar.ButtonInactiveForegroundColor = this.ButtonInactiveForegroundColor;
 			titleBar.ButtonInactiveBackgroundColor = this.ButtonInactiveBackgroundColor;
+			_owner = this;
 		}
 
 		private void Unapply()
 		{
+			if (_owner != this) return;
+
 			var titleBar = TitleBar;
 			titleBar.ForegroundColor = null;
 			titleBar.BackgroundColor = null;
