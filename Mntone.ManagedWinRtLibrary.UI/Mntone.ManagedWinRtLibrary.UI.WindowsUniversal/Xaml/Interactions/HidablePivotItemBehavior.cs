@@ -24,7 +24,9 @@ namespace Mntone.ManagedWinRtLibrary.UI.Xaml.Interactions
 				PropertyMetadata.Create(true, OnIsVisiblePropertyChanged));
 
 		protected override void OnAttached()
-		{ }
+		{
+			this.AssociatedObject.LayoutUpdated += this.OnLayoutUpdated;
+		}
 
 		protected override void OnDetaching()
 		{
@@ -34,44 +36,54 @@ namespace Mntone.ManagedWinRtLibrary.UI.Xaml.Interactions
 #endif
 		}
 
-		private static void OnIsVisiblePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+		private void OnLayoutUpdated(object sender, object e)
 		{
-			var that = (HidablePivotItemBehavior)d;
-			var flag = (bool)e.NewValue;
+			this.AssociatedObject.LayoutUpdated -= this.OnLayoutUpdated;
+			this.ApplyVisible(this.IsVisible);
+		}
 
-			if (that._parent == null)
+		private void ApplyVisible(bool flag)
+		{
+			if (this._parent == null)
 			{
-				var parentPivot = (Pivot)that.AssociatedObject.Parent;
+				var parentPivot = (Pivot)this.AssociatedObject.Parent;
 				if (parentPivot == null) return;
 
-				that._parent = parentPivot;
+				this._parent = parentPivot;
 			}
 
-			var items = that._parent.Items;
-			var target = that.AssociatedObject;
+			var items = this._parent.Items;
+			var target = this.AssociatedObject;
 			if (flag)
 			{
 				if (!items.Contains(target))
 				{
-					if (that._index < 0 || that._index >= items.Count)
+					if (this._index < 0 || this._index >= items.Count)
 					{
 						items.Add(target);
 					}
 					else
 					{
-						items.Insert(that._index, target);
+						items.Insert(this._index, target);
 					}
-					that._index = -1;
+					this._index = -1;
 				}
 			}
 			else
 			{
 				if (items.Contains(target))
 				{
-					that._index = items.IndexOf(target);
+					this._index = items.IndexOf(target);
 					items.Remove(target);
 				}
 			}
+		}
+
+		private static void OnIsVisiblePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+		{
+			var that = (HidablePivotItemBehavior)d;
+			var flag = (bool)e.NewValue;
+			that.ApplyVisible(flag);
 		}
 	}
 }
