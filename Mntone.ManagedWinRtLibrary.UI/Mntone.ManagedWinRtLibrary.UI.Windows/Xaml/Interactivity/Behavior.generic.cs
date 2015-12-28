@@ -9,9 +9,9 @@ namespace Mntone.ManagedWinRtLibrary.UI.Xaml.Interactivity
 	{
 		protected internal override void AttachCheck(DependencyObject associatedObject)
 		{
-			if (!typeof(T).GetTypeInfo().IsAssignableFrom(this.AssociatedObject.GetType().GetTypeInfo()))
+			if (!typeof(T).GetTypeInfo().IsAssignableFrom(associatedObject.GetType().GetTypeInfo()))
 			{
-				var actualType = base.AssociatedObject.GetType().FullName;
+				var actualType = associatedObject.GetType().FullName;
 				var expectedType = typeof(T).FullName;
 				var message = string.Format("AssociatedObject is of type {0} but should be of type {1}.", actualType, expectedType);
 				throw new InvalidOperationException(message);
