@@ -53,14 +53,16 @@ namespace Mntone.ManagedWinRtLibrary.UI.Xaml.Interactions
 			= DependencyProperty.Register(nameof(BackgroundOpacity), typeof(double), typeof(StatusBarColorBehavior), PropertyMetadata.Create(1.0, OnBackgroundOpacityChanged));
 
 
-#if !WINDOWS_UWP
 		private bool _isEnabled = false;
-#endif
 
 		protected override void OnAttached()
 		{
 #if WINDOWS_UWP
-			if (IsApiEnabled) this.Apply();
+			if (IsApiEnabled)
+			{
+				this._isEnabled = true;
+				this.Apply();
+			}
 #else
 			this._isEnabled = true;
 			this.Apply();
@@ -72,7 +74,11 @@ namespace Mntone.ManagedWinRtLibrary.UI.Xaml.Interactions
 		protected override void OnDetaching()
 		{
 #if WINDOWS_UWP
-			if (IsApiEnabled) this.Unapply();
+			if (IsApiEnabled)
+			{
+				this.Unapply();
+				this._isEnabled = false;
+			}
 #else
 			this.AssociatedObject.Loaded -= this.OnLoaded;
 			this.AssociatedObject.Unloaded -= this.OnUnloaded;
@@ -124,7 +130,7 @@ namespace Mntone.ManagedWinRtLibrary.UI.Xaml.Interactions
 		{
 			var that = (StatusBarColorBehavior)d;
 #if WINDOWS_UWP
-			if (IsApiEnabled)
+			if (IsApiEnabled && that._isEnabled)
 #else
 			if (that._isEnabled)
 #endif
@@ -137,7 +143,7 @@ namespace Mntone.ManagedWinRtLibrary.UI.Xaml.Interactions
 		{
 			var that = (StatusBarColorBehavior)d;
 #if WINDOWS_UWP
-			if (IsApiEnabled)
+			if (IsApiEnabled && that._isEnabled)
 #else
 			if (that._isEnabled)
 #endif
@@ -150,7 +156,7 @@ namespace Mntone.ManagedWinRtLibrary.UI.Xaml.Interactions
 		{
 			var that = (StatusBarColorBehavior)d;
 #if WINDOWS_UWP
-			if (IsApiEnabled)
+			if (IsApiEnabled && that._isEnabled)
 #else
 			if (that._isEnabled)
 #endif
