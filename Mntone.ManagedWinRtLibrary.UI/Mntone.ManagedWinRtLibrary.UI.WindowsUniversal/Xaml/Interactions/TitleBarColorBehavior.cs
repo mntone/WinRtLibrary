@@ -188,6 +188,7 @@ namespace Mntone.ManagedWinRtLibrary.UI.Xaml.Interactions
 		private void Unapply()
 		{
 			if (_owner != this) return;
+			_owner = null;
 
 			var titleBar = TitleBar;
 			titleBar.ForegroundColor = null;
@@ -207,84 +208,84 @@ namespace Mntone.ManagedWinRtLibrary.UI.Xaml.Interactions
 		private static void OnForegroundColorChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		{
 			var that = (TitleBarColorBehavior)d;
-			if (that._isEnabled)
+			if (that._isEnabled && _owner == that)
 				TitleBar.ForegroundColor = (Color?)e.NewValue;
 		}
 
 		private static void OnBackgroundColorChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		{
 			var that = (TitleBarColorBehavior)d;
-			if (that._isEnabled)
+			if (that._isEnabled && _owner == that)
 				TitleBar.BackgroundColor = (Color?)e.NewValue;
 		}
 
 		private static void OnInactiveForegroundColorChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		{
 			var that = (TitleBarColorBehavior)d;
-			if (that._isEnabled)
+			if (that._isEnabled && _owner == that)
 				TitleBar.InactiveForegroundColor = (Color?)e.NewValue;
 		}
 
 		private static void OnInactiveBackgroundColorChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		{
 			var that = (TitleBarColorBehavior)d;
-			if (that._isEnabled)
+			if (that._isEnabled && _owner == that)
 				TitleBar.InactiveBackgroundColor = (Color?)e.NewValue;
 		}
 
 		private static void OnButtonForegroundColorChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		{
 			var that = (TitleBarColorBehavior)d;
-			if (that._isEnabled)
+			if (that._isEnabled && _owner == that)
 				TitleBar.ButtonForegroundColor = (Color?)e.NewValue;
 		}
 
 		private static void OnButtonBackgroundColorChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		{
 			var that = (TitleBarColorBehavior)d;
-			if (that._isEnabled)
+			if (that._isEnabled && _owner == that)
 				TitleBar.ButtonBackgroundColor = (Color?)e.NewValue;
 		}
 
 		private static void OnButtonHoverForegroundColorChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		{
 			var that = (TitleBarColorBehavior)d;
-			if (that._isEnabled)
+			if (that._isEnabled && _owner == that)
 				TitleBar.ButtonHoverForegroundColor = (Color?)e.NewValue;
 		}
 
 		private static void OnButtonHoverBackgroundColorChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		{
 			var that = (TitleBarColorBehavior)d;
-			if (that._isEnabled)
+			if (that._isEnabled && _owner == that)
 				TitleBar.ButtonHoverBackgroundColor = (Color?)e.NewValue;
 		}
 
 		private static void OnButtonPressedForegroundColorChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		{
 			var that = (TitleBarColorBehavior)d;
-			if (that._isEnabled)
+			if (that._isEnabled && _owner == that)
 				TitleBar.ButtonPressedForegroundColor = (Color?)e.NewValue;
 		}
 
 		private static void OnButtonPressedBackgroundColorChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		{
 			var that = (TitleBarColorBehavior)d;
-			if (that._isEnabled)
+			if (that._isEnabled && _owner == that)
 				TitleBar.ButtonPressedBackgroundColor = (Color?)e.NewValue;
 		}
 
 		private static void OnButtonInactiveForegroundColorChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		{
 			var that = (TitleBarColorBehavior)d;
-			if (that._isEnabled)
+			if (that._isEnabled && _owner == that)
 				TitleBar.ButtonInactiveForegroundColor = (Color?)e.NewValue;
 		}
 
 		private static void OnButtonInactiveBackgroundColorChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		{
 			var that = (TitleBarColorBehavior)d;
-			if (that._isEnabled)
+			if (that._isEnabled && _owner == that)
 				TitleBar.ButtonInactiveBackgroundColor = (Color?)e.NewValue;
 		}
 

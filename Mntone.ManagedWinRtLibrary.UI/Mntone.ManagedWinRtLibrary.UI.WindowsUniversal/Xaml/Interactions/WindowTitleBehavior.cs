@@ -11,6 +11,9 @@ namespace Mntone.ManagedWinRtLibrary.UI.Xaml.Interactions
 {
 	public sealed class WindowTitleBehavior : Behavior<Page>
 	{
+		[System.ThreadStatic]
+		private static WindowTitleBehavior _owner = null;
+
 		[CustomPropertyValueEditor(CustomPropertyValueEditor.PropertyBinding)]
 		public string Title
 		{
@@ -69,14 +72,27 @@ namespace Mntone.ManagedWinRtLibrary.UI.Xaml.Interactions
 		}
 #endif
 
-		private void Apply() => ApplicationView.Title = this.Title;
-		private void Unapply() => ApplicationView.Title = string.Empty;
+		private void Apply()
+		{
+			ApplicationView.Title = this.Title;
+			_owner = this;
+		}
+
+		private void Unapply()
+		{
+			if (_owner != this) return;
+			_owner = null;
+
+			ApplicationView.Title = string.Empty;
+		}
 
 		private static void OnTitleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		{
 			var that = (WindowTitleBehavior)d;
-#if !WINDOWS_UWP
-			if (that._isEnabled)
+#if WINDOWS_UWP
+			if (_owner == that)
+#else
+			if (that._isEnabled && _owner == that)
 #endif
 				ApplicationView.Title = (string)e.NewValue;
 		}

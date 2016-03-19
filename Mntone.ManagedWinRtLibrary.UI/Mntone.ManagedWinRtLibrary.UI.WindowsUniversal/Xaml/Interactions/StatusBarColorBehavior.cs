@@ -119,6 +119,7 @@ namespace Mntone.ManagedWinRtLibrary.UI.Xaml.Interactions
 		private void Unapply()
 		{
 			if (_owner != this) return;
+			_owner = null;
 
 			var statusBar = StatusBar;
 			statusBar.ForegroundColor = null;
@@ -130,9 +131,9 @@ namespace Mntone.ManagedWinRtLibrary.UI.Xaml.Interactions
 		{
 			var that = (StatusBarColorBehavior)d;
 #if WINDOWS_UWP
-			if (IsApiEnabled && that._isEnabled)
+			if (IsApiEnabled && that._isEnabled && _owner == that)
 #else
-			if (that._isEnabled)
+			if (that._isEnabled && _owner == that)
 #endif
 			{
 				StatusBar.ForegroundColor = (Color?)e.NewValue;
@@ -143,9 +144,9 @@ namespace Mntone.ManagedWinRtLibrary.UI.Xaml.Interactions
 		{
 			var that = (StatusBarColorBehavior)d;
 #if WINDOWS_UWP
-			if (IsApiEnabled && that._isEnabled)
+			if (IsApiEnabled && that._isEnabled && _owner == that)
 #else
-			if (that._isEnabled)
+			if (that._isEnabled && _owner == that)
 #endif
 			{
 				StatusBar.BackgroundColor = (Color?)e.NewValue;
@@ -156,9 +157,9 @@ namespace Mntone.ManagedWinRtLibrary.UI.Xaml.Interactions
 		{
 			var that = (StatusBarColorBehavior)d;
 #if WINDOWS_UWP
-			if (IsApiEnabled && that._isEnabled)
+			if (IsApiEnabled && that._isEnabled && _owner == that)
 #else
-			if (that._isEnabled)
+			if (that._isEnabled && _owner == that)
 #endif
 			{
 				StatusBar.BackgroundOpacity = (double)e.NewValue;
